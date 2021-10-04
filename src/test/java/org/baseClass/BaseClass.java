@@ -44,6 +44,9 @@ public class BaseClass {
 		} else {
 			System.err.println("Invalid browser name");
 		}
+		
+		
+		
 	}
 
 	public static void launchChromeBrowser() {
