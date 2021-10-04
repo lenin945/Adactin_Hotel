@@ -52,6 +52,9 @@ public class BaseClass {
 	public static void launchChromeBrowser() {
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
+		
+		
+		
 	}
 
 	public static void launchFirFoxBrowser() {
