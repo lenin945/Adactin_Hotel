@@ -130,9 +130,9 @@ public class BaseClass {
 	}
 
 	// read all cell values from excel
-	public static List<String> excelReadAll(String filename, String sheetName) throws IOException {
+	public static List<String> excelReadAll(String fileName, String sheetName) throws IOException {
 		File loc = new File(
-				"C:\\Users\\lenin\\eclipse-workspace\\MavenDemo\\src\\test\\resources\\Excel\\" + filename + ".xlsx");
+				System.getProperty("user.dir")+"\\EXcel\\"+fileName +".xlsx");
 
 		FileInputStream st = new FileInputStream(loc);
 
@@ -163,10 +163,10 @@ public class BaseClass {
 	}
 
 	// read particular cell value from excel
-	public static String readCell(String fileName, String sheetName, int row, int cell, String dateType)
+	public static String readCell(String fileName,String sheetName, int row, int cell, String dateType)
 			throws IOException {
 		File loc = new File(
-				"C:\\Users\\lenin\\eclipse-workspace\\AdactinHotel\\Excel"+fileName + ".xlsx");
+				System.getProperty("user.dir")+"\\EXcel\\"+fileName +".xlsx");
 
 		FileInputStream st = new FileInputStream(loc);
 
@@ -194,7 +194,7 @@ public class BaseClass {
 			throws IOException {
 
 		File f = new File(
-				"C:\\Users\\lenin\\eclipse-workspace\\AdactinHotel\\Excel"+fileName +".xlsx");
+				System.getProperty("user.dir")+"\\EXcel\\"+fileName +".xlsx");
 
 		Workbook w = new XSSFWorkbook();
 		Cell c = w.createSheet(sheetName).createRow(row).createCell(cell);
@@ -208,7 +208,7 @@ public class BaseClass {
 			throws IOException {
 
 		File f = new File(
-				"C:\\Users\\lenin\\eclipse-workspace\\AdactinHotel\\Excel"+ fileName + ".xlsx");
+				System.getProperty("user.dir")+"\\EXcel\\"+fileName +".xlsx");
 
 		FileInputStream fi = new FileInputStream(f);
 		Workbook w = new XSSFWorkbook(fi);
