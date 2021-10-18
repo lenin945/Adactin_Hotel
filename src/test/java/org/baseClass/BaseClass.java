@@ -163,10 +163,10 @@ public class BaseClass {
 	}
 
 	// read particular cell value from excel
-	public static String readCell(String fileName,String sheetName, int row, int cell, String dateType)
+	public static String readCell(String sheetName, int row, int cell)
 			throws IOException {
 		File loc = new File(
-				System.getProperty("user.dir")+"\\EXcel\\"+fileName +".xlsx");
+				"C:\\Users\\lenin\\OneDrive\\Documents\\GIt_Cloning\\Adactin_Hotel\\target\\Login_Details.xlsx");
 
 		FileInputStream st = new FileInputStream(loc);
 
@@ -179,7 +179,7 @@ public class BaseClass {
 			value = c.getStringCellValue();
 		} else {
 			if (DateUtil.isCellDateFormatted(c)) {
-				SimpleDateFormat s = new SimpleDateFormat(dateType);
+				SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyy");
 				value = s.format(c.getDateCellValue());
 			} else {
 				double d = c.getNumericCellValue();
@@ -194,7 +194,7 @@ public class BaseClass {
 			throws IOException {
 
 		File f = new File(
-				System.getProperty("user.dir")+"\\EXcel\\"+fileName +".xlsx");
+				"C:\\Users\\lenin\\OneDrive\\Documents\\GIt_Cloning\\Adactin_Hotel\\target\\Login_Details.xlsx");
 
 		Workbook w = new XSSFWorkbook();
 		Cell c = w.createSheet(sheetName).createRow(row).createCell(cell);

@@ -25,13 +25,13 @@ public class OrderID extends BaseClass {
 	}
 
 	@Before
-	public void before() {
+	public void before() throws IOException {
 		System.out.println("Test Strat Time " + date());
 		launchUrl("https://adactinhotelapp.com/");
 		implicitWait();
 		l = new LoginPage();
-		fillTextBox(l.getTxtUser(), "lenin1904");
-		fillTextBox(l.getTxtPass(), "9943680807");
+		fillTextBox(l.getTxtUser(), readCell("adactin_login_details", 2, 0));
+		fillTextBox(l.getTxtPass(), readCell("adactin_login_details", 2, 1));
 		btnClick(l.getBtnLogin());
 	}
 
@@ -42,49 +42,49 @@ public class OrderID extends BaseClass {
 
 	@AfterClass
 	public static void afterClass() {
-		quitBrowser();
+		//quitBrowser();
 	}
 
 	@Test
 	public void hotelBooking() throws IOException {
 		sh = new SearchHotel();
-		select(sh.getDropDownLocation(), "London");
-		select(sh.getDropDownHotels(), "Hotel Sunshine");
-		select(sh.getDropDownRoomType(), "Double");
-		select(sh.getDropDownNoOfRooms(), "4");
+		select(sh.getDropDownLocation(), readCell("adactin_login_details", 2, 2));
+		select(sh.getDropDownHotels(), readCell("adactin_login_details", 2, 3));
+		select(sh.getDropDownRoomType(), readCell("adactin_login_details", 2, 4));
+		select(sh.getDropDownNoOfRooms(), readCell("adactin_login_details", 2, 5));
 		clearTxtBox(sh.getTxtCheckIn());
-		fillTextBox(sh.getTxtCheckIn(), "12/10/2021");
+		fillTextBox(sh.getTxtCheckIn(), readCell("adactin_login_details", 2, 6));
 		clearTxtBox(sh.getTxtCheckOut());
-		fillTextBox(sh.getTxtCheckOut(), "13/10/2021");
-		select(sh.getDropDownAdults(), "3");
-		select(sh.getDropDownChildren(), "3");
+		fillTextBox(sh.getTxtCheckOut(), readCell("adactin_login_details", 2, 7));
+		select(sh.getDropDownAdults(), readCell("adactin_login_details", 2, 8));
+		select(sh.getDropDownChildren(), readCell("adactin_login_details", 2, 9));
 		btnClick(sh.getBtnSearch());
 		 s = new SelectHotel();
 		btnClick(s.getBtnSelect());
 		btnClick(s.getBtnContinue());
 		 b = new BookAHotel();
-		fillTextBox(b.getTxtFirstName(), "Lenin");
-		fillTextBox(b.getTxtLastName(), "Raju");
-		fillTextBox(b.getTxtAddress(), "Kullathupadai Street, Sankarapuram. PIN - 606401");
-		fillTextBox(b.getTxtCardNumber(), "1234567891234567");
-		select(b.getDropDownCardType(), "VISA");
-		select(b.getDropDownMonth(), "6");
-		select(b.getDropDownYear(), "2022");
-		fillTextBox(b.getTxtCvv(), "4564");
+		fillTextBox(b.getTxtFirstName(), readCell("adactin_login_details", 2, 10));
+		fillTextBox(b.getTxtLastName(), readCell("adactin_login_details", 2, 11));
+		fillTextBox(b.getTxtAddress(), readCell("adactin_login_details", 2, 12));
+		fillTextBox(b.getTxtCardNumber(), readCell("adactin_login_details", 2, 13));
+		select(b.getDropDownCardType(), readCell("adactin_login_details", 2, 14));
+		select(b.getDropDownMonth(), readCell("adactin_login_details", 2, 15));
+		select(b.getDropDownYear(), readCell("adactin_login_details", 2, 16));
+		fillTextBox(b.getTxtCvv(), readCell("adactin_login_details", 2, 17));
 		btnClick(b.getBtnBookNow());
-		bc = new BookingConfirmation();
-		String orderIDNo = getAttribute(bc.getTxtOrderNo());
-		System.out.println("Order ID is " + orderIDNo);
-		createCell("Adactin", "OrderNo", 1, 1, orderIDNo);
+//		bc = new BookingConfirmation();
+//		String orderIDNo = getAttribute(bc.getTxtOrderNo());
+//		System.out.println("Order ID is " + orderIDNo);
+//		createCell("Adactin", "OrderNo", 1, 1, orderIDNo);
 	}
 
-	
+	@Ignore
 	@Test
 	public void cancelBooking() throws IOException {
 		sh = new SearchHotel();
 		btnClick(sh.getBtnBookedItinery());
 		BookedItinerary bi=new BookedItinerary();
-		String id = readCell("Adactin", "OrderNo", 1, 1, "dd-MM-YYYY");
+		String id = readCell("OrderNo", 1, 1);
 		System.out.println(id);
 		fillTextBox(bi.getTxtSearchBox(), id );
 		btnClick(bi.getBtnGo());

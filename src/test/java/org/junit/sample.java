@@ -9,7 +9,7 @@ public class sample extends BaseClass {
 	public static void main(String[] args) throws IOException {
 		System.out.println(System.getProperty("user.dir"));
 		createCell("Adactin", "OrderID", 1, 1, "Lenin");
-	String v = readCell("Adactin", "OrderID", 1, 1, "dd-MM-YY");
+	String v = readCell("OrderID", 1, 1);
 	System.out.println(v);
 	}
 }
